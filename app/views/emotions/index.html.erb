@@ -1,0 +1,20 @@
+<h1>Listing emotions</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @emotions.each do |emotion| %>
+  <tr>
+    <td><%=h emotion.name %></td>
+    <td><%= link_to 'Show', emotion %></td>
+    <td><%= link_to 'Edit', edit_emotion_path(emotion) %></td>
+    <td><%= link_to 'Destroy', emotion, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New emotion', new_emotion_path %>

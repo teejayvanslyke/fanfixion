@@ -1,0 +1,21 @@
+<h3><%= @status.twitter_user_screen_name %></h3>
+
+<p><%= @status.text %></p>
+
+<p>Is <%= @status.twitter_user_screen_name %> <%= @emotion.name %>?</p>
+
+<% form_tag sentiments_path do -%>
+  <%= hidden_field_tag :emotion_id, @emotion.id %>
+  <%= hidden_field_tag :status_id, @emotion.id %>
+  <%= hidden_field_tag :match, true %>
+  <%= submit_tag 'Yes' %>
+<% end -%>
+
+<% form_tag sentiments_path do -%>
+  <%= hidden_field_tag :emotion_id, @emotion.id %>
+  <%= hidden_field_tag :status_id, @emotion.id %>
+  <%= hidden_field_tag :match, false %>
+  <%= submit_tag 'No' %>
+<% end -%>
+
+<%= button_to "Irrelevant / Can't Tell / Spam", trainer_path %>

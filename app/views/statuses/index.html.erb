@@ -1,0 +1,8 @@
+<h1>Listing statuses</h1>
+
+<ul>
+  <% @statuses.each do |status| -%>
+    <li><strong><%= status.twitter_user_screen_name %></strong> <%= status.text %></li>
+  <% end -%>
+</ul>
+

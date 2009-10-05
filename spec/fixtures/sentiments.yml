@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  status_id: 1
+  emotion_id: 1
+  trained: false
+
+two:
+  status_id: 1
+  emotion_id: 1
+  trained: false
