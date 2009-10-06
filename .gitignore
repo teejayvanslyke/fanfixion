@@ -9,7 +9,6 @@ db/*sqlite
 db/*sqlite3
 db/schema.rb
 db/sphinx
-config/database.yml
 config/*.sphinx.conf
 log/*.log
 log/*.pid
