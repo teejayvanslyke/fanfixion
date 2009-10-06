@@ -1,6 +1,12 @@
 class Trend < ActiveRecord::Base
 
   has_many :statuses
+  has_many :sentiments
+  has_many :emotions, :through => :sentiments, :uniq => true, :order => 'created_at DESC' do 
+    def first(limit=1)
+      find(:all, :limit => limit)
+    end
+  end
 
   named_scope :most_recent, lambda {|limit|
     { :order => "created_at DESC", :limit => limit }

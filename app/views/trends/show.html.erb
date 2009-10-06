@@ -1,8 +1,21 @@
-<p>
-  <b>Name:</b>
-  <%=h @trend.name %>
-</p>
+<div class="span-12">
+<h3>How do people feel about <span class="trend"><%=h @trend.name %>?</h3> 
+<ul class="scoreboard">
+  <% @trend.emotions.first(10).each do |emotion| -%>
+    <li>
+      <span class="score"><%= Pivot.new(:emotion => emotion, :trend => @trend).formatted_score %></span>
+      <span class="emotion"><%= link_to emotion.name, emotion %></span>
+    </li>
+  <% end -%>
+</ul>
+</div>
 
+<div class="span-12 last">
+  <div id="sidebar">
+  <ul>
+    <li>
+      </li>
+    </ul>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_trend_path(@trend) %> |
-<%= link_to 'Back', trends_path %>
