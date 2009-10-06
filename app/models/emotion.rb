@@ -1,6 +1,11 @@
 class Emotion < ActiveRecord::Base
 
   has_many :sentiments
+  has_many :trends, :through => :sentiments, :uniq => true, :order => 'created_at DESC' do 
+    def first(limit=1)
+      find(:all, :limit => limit)
+    end
+  end
 
   def to_param
     self.name
@@ -12,16 +17,13 @@ class Emotion < ActiveRecord::Base
 
   def train(status, match)
     if match
-      self.classifier.train(self.name, status.text)
-    else
-      self.classifier.train(self.opposite_name, status.text)
+      StatusClassifier.train(self.name, status.text)
     end
 
-    self.madaleine.take_snapshot
   end
 
   def classify(status)
-    Sentiment.create(:emotion => self, :status => status, :match => self.classifier.classify(status.text).downcase == self.name)
+    Sentiment.create(:emotion => self, :status => status, :match => StatusClassifier.classify(status.text).downcase == self.name)
   end
 
   def score
@@ -30,18 +32,7 @@ class Emotion < ActiveRecord::Base
 
   # Debug method.
   def classify_text(text)
-    self.classifier.classify(text)
-  end
-
-  def classifier
-    madaleine.system
-  end
-
-  def madaleine
-    @madeleine ||= 
-      SnapshotMadeleine.new(File.join(RAILS_ROOT, 'snapshots', self.name)) do
-        Classifier::Bayes.new(self.name, self.opposite_name)
-      end
+    StatusClassifier.classify(text)
   end
 
   def opposite_name

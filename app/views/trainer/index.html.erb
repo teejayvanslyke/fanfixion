@@ -6,14 +6,14 @@
 
 <% form_tag sentiments_path do -%>
   <%= hidden_field_tag :emotion_id, @emotion.id %>
-  <%= hidden_field_tag :status_id, @emotion.id %>
+  <%= hidden_field_tag :status_id, @status.id %>
   <%= hidden_field_tag :match, true %>
   <%= submit_tag 'Yes' %>
 <% end -%>
 
 <% form_tag sentiments_path do -%>
   <%= hidden_field_tag :emotion_id, @emotion.id %>
-  <%= hidden_field_tag :status_id, @emotion.id %>
+  <%= hidden_field_tag :status_id, @status.id %>
   <%= hidden_field_tag :match, false %>
   <%= submit_tag 'No' %>
 <% end -%>

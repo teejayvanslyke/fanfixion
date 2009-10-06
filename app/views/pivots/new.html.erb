@@ -1,0 +1,16 @@
+<% form_tag pivot_path, :method => :get do -%>
+
+  <div class="span-12">
+    <label class="trend">Trend</label><br/>
+    <%= select_tag :trend_name, options_for_select(@trends.map {|t| [t.name, t.name]}), :class => 'trend' %>
+  </div>
+
+  <div class="span-12 last">
+    <label class="emotion">Emotion</label><br/>
+    <%= select_tag :emotion_name, options_for_select(@emotions.map {|t| [t.name, t.name]}), :class => 'emotion' %>
+  </div>
+
+  <%= submit_tag 'Go' %>
+
+<% end -%>
+

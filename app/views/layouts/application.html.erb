@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Emo - Twitter Emotion Analytics</title>
+  <%= javascript_include_tag :defaults %>
+  <link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">  
+  <!--[if lt IE 8]><link rel="stylesheet" href="stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+  <%= stylesheet_link_tag 'screen' %>
+</head>
+<body>
+
+  <div class="container">
+    <div class="span-24 last">
+      <div class="span-12">
+        <h1><%= link_to 'Emo', root_path %></h1>
+        <h2>What are you feeling?</h2>
+      </div>
+
+      <div class="span-12 last">
+        <div class="span-6">
+          <h4 class="trend">Recent Trends</h4>
+          <% Trend.most_recent(5).each do |trend| -%>
+            <li class="trend"><%= link_to trend.name, trend %></li>
+          <% end -%>
+        </div>
+        <div class="span-6 last">
+          <h4 class="emotion">Raging Emotions</h4>
+          <% Emotion.find(:all, :limit => 5).each do |emotion| -%>
+            <li class="emotion"><%= link_to emotion.name, emotion %></li>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+    <div class="span-24 last">
+      <div id="flash"><%= flash[:notice] %></div>
+      <%= yield %>
+    </div>
+  </div>
+
+</body>
+</html>

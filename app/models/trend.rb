@@ -2,6 +2,10 @@ class Trend < ActiveRecord::Base
 
   has_many :statuses
 
+  named_scope :most_recent, lambda {|limit|
+    { :order => "created_at DESC", :limit => limit }
+  }
+
   class << self
 
     def analyze_current

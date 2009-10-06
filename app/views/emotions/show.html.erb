@@ -1,6 +1,22 @@
-<h2><%=h @emotion.name %></h2>
+<div class="span-12">
+<h3>People are most <span class="emotion"><%=h @emotion.name %></span> about</h3> 
+<ul class="scoreboard">
+  <% @emotion.trends.first(10).each do |trend| -%>
+    <li>
+      <span class="score"><%= Pivot.new(:emotion => @emotion, :trend => trend).formatted_score %></span>
+      <span class="trend"><%= link_to trend.name, trend %></span>
+    </li>
+  <% end -%>
+</ul>
+</div>
 
-<h3><%= @emotion.score %></h3>
+<div class="span-12 last">
+  <div id="sidebar">
+  <ul>
+    <li>
+      <span class="score"><%= @emotion.score.round %>%</span> of everyone's tweets are <span class="emotion"><%= h @emotion.name %></span>.
+      </li>
+    </ul>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_emotion_path(@emotion) %> |
-<%= link_to 'Back', emotions_path %>
