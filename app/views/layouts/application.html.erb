@@ -21,13 +21,17 @@
       </div>
 
       <div class="span-12 last">
-        <div class="span-6">
+        <div class="span-4">
+          <h4><%= link_to 'About Emo', '#' %></h4>
+          <h4><%= link_to 'Trainer', trainer_path %></h4>
+        </div>
+        <div class="span-4">
           <h4 class="trend">Recent Trends</h4>
           <% Trend.most_recent(5).each do |trend| -%>
             <li class="trend"><%= link_to trend.name, trend %></li>
           <% end -%>
         </div>
-        <div class="span-6 last">
+        <div class="span-4 last">
           <h4 class="emotion">Raging Emotions</h4>
           <% Emotion.find(:all, :limit => 5).each do |emotion| -%>
             <li class="emotion"><%= link_to emotion.name, emotion %></li>

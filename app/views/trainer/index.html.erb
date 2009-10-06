@@ -1,21 +1,31 @@
-<h3><%= @status.twitter_user_screen_name %></h3>
+<div id="trainer">
+  <h3 class="bright">Trainer</h3>
 
-<p><%= @status.text %></p>
+  <p>Emo doesn't understand emotions like we do, so we have to teach it.  You can help train emo by reading a few tweets and answering some simple questions.</p>
 
-<p>Is <%= @status.twitter_user_screen_name %> <%= @emotion.name %>?</p>
+  <div class="status"><%= @status.text %></div>
 
-<% form_tag sentiments_path do -%>
-  <%= hidden_field_tag :emotion_id, @emotion.id %>
-  <%= hidden_field_tag :status_id, @status.id %>
-  <%= hidden_field_tag :match, true %>
-  <%= submit_tag 'Yes' %>
-<% end -%>
+  <p>Is @<%= @status.twitter_user_screen_name %> <span class="emotion"><%= @emotion.name %></span> about <span class="trend"><%=h @status.trend.name %></span>?</p>
 
-<% form_tag sentiments_path do -%>
-  <%= hidden_field_tag :emotion_id, @emotion.id %>
-  <%= hidden_field_tag :status_id, @status.id %>
-  <%= hidden_field_tag :match, false %>
-  <%= submit_tag 'No' %>
-<% end -%>
+  <div class="span-8">
+    <% form_tag sentiments_path do -%>
+      <%= hidden_field_tag :emotion_id, @emotion.id %>
+      <%= hidden_field_tag :status_id, @status.id %>
+      <%= hidden_field_tag :match, true %>
+      <%= submit_tag 'Yes' %>
+    <% end -%>
+  </div>
 
-<%= button_to "Irrelevant / Can't Tell / Spam", trainer_path %>
+  <div class="span-8">
+    <% form_tag sentiments_path do -%>
+      <%= hidden_field_tag :emotion_id, @emotion.id %>
+      <%= hidden_field_tag :status_id, @status.id %>
+      <%= hidden_field_tag :match, false %>
+      <%= submit_tag 'No' %>
+    <% end -%>
+  </div>
+
+  <div class="span-8 last">
+    <%= button_to "Irrelevant / Can't Tell / Spam", trainer_path %>
+  </div>
+</div>
