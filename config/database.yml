@@ -2,14 +2,14 @@ development:
   adapter: mysql
   database: emo_development
   username: root
-  password:
+  password: xerces270
 test:
   adapter: mysql
   database: emo_test
   username: root
-  password:
+  password: xerces270
 production:
   adapter: mysql
   database: emo_production
   username: root
-  password:
+  password: xerces270
