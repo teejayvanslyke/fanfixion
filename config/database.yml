@@ -2,7 +2,7 @@ development:
   adapter: mysql
   database: emo_development
   username: root
-  password: xerces270
+  password: 
 test:
   adapter: mysql
   database: emo_test

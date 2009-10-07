@@ -1,5 +1,5 @@
 <div class="span-12">
-<h3>People are most <span class="emotion"><%=h @emotion.name %></span> about</h3> 
+<h3>People feel most <span class="emotion"><%=h @emotion.name %></span> about</h3> 
 <ul class="scoreboard">
   <% @emotion.trends.first(10).each do |trend| -%>
     <li>
@@ -14,7 +14,7 @@
   <div id="sidebar">
   <ul>
     <li>
-      <span class="score"><%= @emotion.score.round %>%</span> of everyone's tweets are <span class="emotion"><%= h @emotion.name %></span>.
+      <span class="score"><%= @emotion.score.round %>%</span> of everyone's tweets display <span class="emotion"><%= h @emotion.name %></span>.
       </li>
     </ul>
   </div>
