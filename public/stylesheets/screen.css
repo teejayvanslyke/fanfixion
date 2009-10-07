@@ -16,7 +16,7 @@ li {
 }
 
 h1 {
-  color: #ffffff;
+  color: #a839b2;
   letter-spacing: -0.1em;
   font-size: 10.0em;
   padding: 0;
@@ -24,8 +24,8 @@ h1 {
   line-height: 0.75em;
 }
 
-h1 a { text-decoration: none; }
-h1 a:hover { color: white; }
+h1 a { color: #a839b2; text-decoration: none; }
+h1 a:hover { color: #a839b2; }
 
 h2 {
   font-size: 2.5em;
@@ -44,6 +44,18 @@ h3 {
 
 h3.bright {
   color: white;
+}
+
+h5 {
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+  letter-spacing: -0.05em;
+  font-weight: normal;
+}
+h5 strong {
+  color: #a839b2;
+  font-weight: normal;
 }
 
 
@@ -111,6 +123,7 @@ h4 a:hover {
 
 label {
   font-size: 2.0em;
+  font-weight: normal;
 }
 
 select {
@@ -140,3 +153,13 @@ button {
   color: white;
   
 }
+
+#left {
+
+}
+#left, #right {
+  text-align: center;
+  font-size: 1.0em;
+  padding: 0 2.0em;
+}
+

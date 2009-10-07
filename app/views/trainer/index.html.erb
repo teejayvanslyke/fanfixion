@@ -1,11 +1,10 @@
 <div id="trainer">
-  <h3 class="bright">Trainer</h3>
 
-  <p>Emo doesn't understand emotions like we do, so we have to teach it.  You can help train emo by reading a few tweets and answering some simple questions.</p>
+  <h5>Emo doesn't understand emotions like we do, so we have to teach it.  You can help train emo by reading a few tweets and answering some simple questions.</h5>
 
   <div class="status"><%= @status.text %></div>
 
-  <p>Does @<%= @status.twitter_user_screen_name %> feel <span class="emotion"><%= @emotion.name %></span> because of <span class="trend"><%=h @status.trend.name %></span>?</p>
+  <h5>Does @<%= @status.twitter_user_screen_name %> feel <span class="emotion"><%= @emotion.name %></span> because of <span class="trend"><%=h @status.trend.name %></span>?</h5>
 
   <div class="span-8">
     <% form_tag sentiments_path do -%>
