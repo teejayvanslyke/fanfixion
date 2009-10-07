@@ -10,6 +10,7 @@ class Pivot
   end
 
   def score
+    return if sentiments.count == 0
     (1.0 * sentiments.matched.count / sentiments.count) * 100
   end
 

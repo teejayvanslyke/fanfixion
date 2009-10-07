@@ -27,6 +27,7 @@ class Emotion < ActiveRecord::Base
   end
 
   def score
+    return 0 if self.sentiments.count == 0
     (1.0 * self.sentiments.matched.count / self.sentiments.count) * 100
   end
 
