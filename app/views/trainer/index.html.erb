@@ -5,7 +5,7 @@
 
   <div class="status"><%= @status.text %></div>
 
-  <p>Is @<%= @status.twitter_user_screen_name %> <span class="emotion"><%= @emotion.name %></span> about <span class="trend"><%=h @status.trend.name %></span>?</p>
+  <p>Does @<%= @status.twitter_user_screen_name %> feel <span class="emotion"><%= @emotion.name %></span> because of <span class="trend"><%=h @status.trend.name %></span>?</p>
 
   <div class="span-8">
     <% form_tag sentiments_path do -%>

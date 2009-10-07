@@ -1,5 +1,5 @@
 <div class="span-12">
-<h3>People feel most <span class="emotion"><%=h @emotion.name %></span> about</h3> 
+<h3>People feel most <span class="emotion"><%=h @emotion.name %></span> because of</h3> 
 <ul class="scoreboard">
   <% @emotion.trends.first(10).each do |trend| -%>
     <li>
