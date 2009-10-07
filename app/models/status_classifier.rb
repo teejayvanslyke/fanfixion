@@ -9,7 +9,7 @@ class StatusClassifier
 
     def madeleine
       SnapshotMadeleine.new(File.join(RAILS_ROOT, 'snapshots')) do
-        Classifier::Bayes.new(*Emotion.all.map {|e| e.name})
+        Classifier::Bayes.new(:categories => Emotion.all.map {|e| e.name})
       end
     end
 
