@@ -8,7 +8,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem 'daemons'
-  config.gem 'classifier'
+  config.gem 'francois-classifier', :lib => 'classifier', :source => 'http://gems.github.com'
   config.gem 'twitter'
   config.gem 'madeleine'
 
