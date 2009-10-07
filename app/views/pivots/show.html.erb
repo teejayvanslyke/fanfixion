@@ -1,4 +1,4 @@
-<h2>How <%= @emotion.name %> are people about <%= @trend.name %>?</h2>
+<h3>How <span class="emotion"><%= @emotion.name %></span> are people about <span class="trend"><%= @trend.name %></span>?</h3>
 
-<h3><%= @pivot.score %></h3>
+<div class="score"><%= @pivot.score.round %>%</div>
 
