@@ -4,6 +4,9 @@ class Sentiment < ActiveRecord::Base
   named_scope :for_pivot, lambda {|emotion, trend| 
     { :conditions => { :emotion_id => emotion.id, :trend_id => trend.id } }
   }
+  named_scope :since, lambda {|datetime|
+    { :conditions => [ 'created_at > ?', datetime ] }
+  }
 
   belongs_to :status
   belongs_to :emotion
