@@ -17,8 +17,13 @@ class Pivot
   end
 
   def score(period=:all_time)
-    return if sentiments(period).count == 0
+    return 0 if sentiments(period).count == 0
     (1.0 * sentiments(period).matched.count / sentiments(period).count) * 100
+  end
+
+  def daily_scores_since(time)
+    ScoreAudit.find(:all, :conditions => [ 'emotion_id = ? AND trend_id = ? AND type = ? AND created_at > ?',
+                    @emotion.id, @trend.id, 'daily', time ])
   end
 
   def formatted_score
