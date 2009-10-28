@@ -1,6 +1,6 @@
 class Sentiment < ActiveRecord::Base
+  # TODO: Remove #match, since all sentiments now match by definition.
 
-  named_scope :matched, :conditions => { :match => true }
   named_scope :for_pivot, lambda {|emotion, trend| 
     { :conditions => { :emotion_id => emotion.id, :trend_id => trend.id } }
   }

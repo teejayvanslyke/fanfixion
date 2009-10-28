@@ -28,13 +28,13 @@
         </div>
         <div class="span-4">
           <h4 class="trend">Recent Trends</h4>
-          <% Trend.most_recent(5).each do |trend| -%>
+          <% Trend.most_recent(6).each do |trend| -%>
             <li class="trend"><%= link_to trend.name, trend %></li>
           <% end -%>
         </div>
         <div class="span-4 last">
           <h4 class="emotion">Raging Emotions</h4>
-          <% Emotion.find(:all, :limit => 5).each do |emotion| -%>
+          <% Emotion.find(:all, :limit => 6).each do |emotion| -%>
             <li class="emotion"><%= link_to emotion.name, emotion %></li>
           <% end -%>
         </div>

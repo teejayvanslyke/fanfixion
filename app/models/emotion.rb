@@ -1,7 +1,8 @@
 class Emotion < ActiveRecord::Base
 
-  has_many :sentiments
-  has_many :trends, :through => :sentiments, :uniq => true, :order => 'created_at DESC' do 
+  has_many :pivots
+  has_many :statuses, :through => :pivots, :order => 'created_at DESC'
+  has_many :trends, :through => :pivots, :uniq => true, :order => 'created_at DESC' do 
     def first(limit=1)
       find(:all, :limit => limit)
     end
@@ -22,13 +23,8 @@ class Emotion < ActiveRecord::Base
 
   end
 
-  def classify(status)
-    Sentiment.create(:emotion => self, :status => status, :match => StatusClassifier.classify(status.text).downcase == self.name)
-  end
-
   def score
-    return 0 if self.sentiments.count == 0
-    (1.0 * self.sentiments.matched.count / self.sentiments.count) * 100
+    return 0
   end
 
   # Debug method.

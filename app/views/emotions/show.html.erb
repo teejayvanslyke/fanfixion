@@ -3,7 +3,7 @@
 <ul class="scoreboard">
   <% @emotion.trends.first(10).each do |trend| -%>
     <li>
-      <span class="score"><%= Pivot.new(:emotion => @emotion, :trend => trend).formatted_score %></span>
+      <span class="score"><%= Pivot.find_or_create_by_emotion_and_trend(@emotion, trend).formatted_score %></span>
       <span class="trend"><%= link_to trend.name, trend %></span>
     </li>
   <% end -%>
@@ -12,9 +12,12 @@
 
 <div class="span-12 last">
   <div id="sidebar">
-  <ul>
-    <li>
-      <span class="score"><%= @emotion.score.round %>%</span> of everyone's tweets display <span class="emotion"><%= h @emotion.name %></span>.
+    <ul>
+      <li>
+      <span class="score"><%= @emotion.statuses.count %></span> tweets displayed <span class="emotion"><%= @emotion.name %></span>.
+      </li>
+      <li>
+        <span class="score"><%= @emotion.score.round %>%</span> of everyone's tweets display <span class="emotion"><%= h @emotion.name %></span>.
       </li>
     </ul>
   </div>

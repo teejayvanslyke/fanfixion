@@ -1,33 +1,28 @@
-class Pivot
+class Pivot < ActiveRecord::Base
 
-  def initialize(params={})
-    @emotion = params[:emotion]
-    @trend   = params[:trend]
+  belongs_to :trend
+  belongs_to :emotion
+  has_many   :statuses
+
+  def self.find_or_create_by_emotion_and_trend(emotion, trend)
+    find_by_emotion_id_and_trend_id(emotion.id, trend.id) || create(:emotion => emotion, :trend => trend)
   end
 
-  def sentiments(period=:all_time)
-    case period
-    when :all_time
-      @sentiments ||= Sentiment.for_pivot(@emotion, @trend)
-    when :daily
-      @sentiments ||= Sentiment.for_pivot(@emotion, @trend).since(1.day.ago)
-    when :hourly
-      @sentiments ||= Sentiment.for_pivot(@emotion, @trend).since(1.hour.ago)
-    end
+  def score_today
+    statuses.today.count / trend.statuses.today.count
   end
 
-  def score(period=:all_time)
-    return 0 if sentiments(period).count == 0
-    (1.0 * sentiments(period).matched.count / sentiments(period).count) * 100
+  def score_for_hour
+    statuses.in_last_hour.count / trend.statuses.in_last_hour.count
   end
 
-  def daily_scores_since(time)
-    ScoreAudit.find(:all, :conditions => [ 'emotion_id = ? AND trend_id = ? AND type = ? AND created_at > ?',
-                    @emotion.id, @trend.id, 'daily', time ])
+  def score_for_all_time
+    return 0 if trend.statuses.count == 0
+    statuses.count / trend.statuses.count
   end
 
   def formatted_score
-    "#{score.round}%"
+    "#{score_for_all_time.round}%"
   end
 
 end

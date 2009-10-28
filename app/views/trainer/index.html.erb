@@ -4,24 +4,27 @@
 
   <div class="status"><%= @status.text %></div>
 
-  <h5>Does @<%= @status.twitter_user_screen_name %> feel <span class="emotion"><%= @emotion.name %></span> because of <span class="trend"><%=h @status.trend.name %></span>?</h5>
+  <h5>
+    What does @<%= @status.twitter_user_screen_name %> feel because of 
+    <span class="trend"><%=h @status.trend.name %></span>?
+  </h5>
+
+  <% Emotion.all.each_with_index do |emotion, index| -%>
+
+    <div class="span-8 <%= 'last' if index % 3 == 2 %>">
+      <% form_tag sentiments_path do -%>
+        <%= hidden_field_tag :emotion_id, emotion.id %>
+        <%= hidden_field_tag :status_id, @status.id %>
+        <span class="emotion">
+          <%= submit_tag emotion.name %>
+        </span>
+      <% end -%>
+    </div>
+
+  <% end -%>
 
   <div class="span-8">
-    <% form_tag sentiments_path do -%>
-      <%= hidden_field_tag :emotion_id, @emotion.id %>
-      <%= hidden_field_tag :status_id, @status.id %>
-      <%= hidden_field_tag :match, true %>
-      <%= submit_tag 'Yes' %>
-    <% end -%>
-  </div>
-
-  <div class="span-8">
-    <% form_tag sentiments_path do -%>
-      <%= hidden_field_tag :emotion_id, @emotion.id %>
-      <%= hidden_field_tag :status_id, @status.id %>
-      <%= hidden_field_tag :match, false %>
-      <%= submit_tag 'No' %>
-    <% end -%>
+    &nbsp;
   </div>
 
   <div class="span-8 last">

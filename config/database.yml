@@ -7,7 +7,7 @@ test:
   adapter: mysql
   database: emo_test
   username: root
-  password: xerces270
+  password: 
 production:
   adapter: mysql
   database: emo_production

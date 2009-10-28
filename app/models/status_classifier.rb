@@ -4,21 +4,21 @@ class StatusClassifier
 
   class << self
     def instance
-      self.madeleine.system
-    end
-
-    def madeleine
-      SnapshotMadeleine.new(File.join(RAILS_ROOT, 'snapshots')) do
-        Classifier::Bayes.new(:categories => Emotion.all.map {|e| e.name})
-      end
+      @instance ||= YAML::load_file(self.snapshots.last) || Classifier::Bayes.new(:categories => Emotion.all.map {|e| e.name})
     end
 
     def classify(text)
       instance.classify(text)
     end
+
+    def snapshots
+      Dir[File.join(RAILS_ROOT, 'snapshots', '*.yml')]
+    end
     
     def take_snapshot
-      madeleine.take_snapshot
+      File.open(File.join(RAILS_ROOT, 'snapshots', 'snapshot.yml'), 'w' ) do |out|
+        YAML.dump(instance, out)
+      end
     end
 
     def train(category, text)

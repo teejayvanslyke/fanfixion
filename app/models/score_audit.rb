@@ -8,8 +8,8 @@ class ScoreAudit < ActiveRecord::Base
     def take_snapshot(type)
       Trend.all.each do |trend|
         trend.emotions.each do |emotion|
-          pivot = Pivot.new(:emotion => emotion, :trend => trend)
-          create!(:emotion => emotion, :trend => trend, :score => pivot.score(type), :type => type)
+          pivot = Pivot.find_or_create(:emotion => emotion, :trend => trend)
+          create!(:pivot => pivot, :score => pivot.send("#{type}_score"), :type => type)
         end
       end
     end
