@@ -29,6 +29,7 @@ class Emotion < ActiveRecord::Base
   end
 
   def score
+    return 0.0 if Trend.count == 0
     (0.0 + (pivot_count / Trend.count) * 100).round
   end
 
