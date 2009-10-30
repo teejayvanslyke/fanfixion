@@ -2,6 +2,8 @@ class Status < ActiveRecord::Base
   belongs_to :trend
   belongs_to :pivot
 
+  named_scope :recent, :order => 'created_at DESC'
+
   named_scope :today, lambda { 
     { :conditions => [ 'created_at > ?', 1.day.ago ] } 
   }

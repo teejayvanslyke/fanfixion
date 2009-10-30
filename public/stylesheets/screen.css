@@ -143,7 +143,10 @@ select {
 }
 
 #sidebar {
-  font-size: 1.5em;
+}
+
+.status {
+  font-size: 1.0em;
 }
 
 p { 

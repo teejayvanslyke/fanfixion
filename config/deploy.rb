@@ -30,6 +30,11 @@ deploy.task :restart do
   start
 end
 
+after "deploy:update_code", "deploy:symlink_snapshots"
+deploy.task :symlink_snapshots, :roles => :app do
+  run "ln -s #{shared_path}/snapshots #{current_release}/snapshots"
+end
+
 namespace :poller do
   desc "start the Twitter polling service"
   task :start do

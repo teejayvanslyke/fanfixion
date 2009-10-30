@@ -1,4 +1,5 @@
-<div class="span-12">
+<div class="span-16">
+  <div id="sidebar">
 <h3>People feel most <span class="emotion"><%=h @emotion.name %></span> because of</h3> 
 <ul class="scoreboard">
   <% @emotion.trends.first(10).each do |trend| -%>
@@ -8,18 +9,22 @@
     </li>
   <% end -%>
 </ul>
+  </div>
 </div>
 
-<div class="span-12 last">
-  <div id="sidebar">
+<div class="span-8 last">
     <ul>
       <li>
-      <span class="score"><%= @emotion.statuses.count %></span> tweets displayed <span class="emotion"><%= @emotion.name %></span>.
+      <span class="score"><%= @emotion.statuses.count %></span> tweets are <span class="emotion"><%= @emotion.name %></span>.
       </li>
       <li>
-        <span class="score"><%= @emotion.score.round %>%</span> of everyone's tweets display <span class="emotion"><%= h @emotion.name %></span>.
+        <span class="score"><%= @emotion.score.round %>%</span> of everyone's tweets are <span class="emotion"><%= h @emotion.name %></span>.
       </li>
     </ul>
-  </div>
+
+    <% @emotion.statuses.recent.first(20).each do |status| -%>
+      <div class="status"><%= status.text %></div>
+    <% end -%>
+
 </div>
 
