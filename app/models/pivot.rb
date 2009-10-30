@@ -3,6 +3,7 @@ class Pivot < ActiveRecord::Base
   belongs_to :trend
   belongs_to :emotion
   has_many   :statuses
+  has_many   :hourly_scores, :class_name => 'ScoreAudit', :conditions => "type = 'hourly'"
 
   def self.find_or_create_by_emotion_and_trend(emotion, trend)
     find_by_emotion_id_and_trend_id(emotion.id, trend.id) || create(:emotion => emotion, :trend => trend)
@@ -13,8 +14,11 @@ class Pivot < ActiveRecord::Base
   end
 
   def score_for_hour
+    return nil if trend.statuses.in_last_hour.empty?
     0.0 + (statuses.in_last_hour.count / trend.statuses.in_last_hour.count) * 100
   end
+
+  def hourly_score; score_for_hour; end
 
   def score_for_all_time
     return 0.0 if trend.statuses.count == 0
