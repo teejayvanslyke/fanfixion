@@ -34,8 +34,11 @@
         </div>
         <div class="span-4 last">
           <h4 class="emotion">Raging Emotions</h4>
-          <% Emotion.find(:all, :limit => 6).each do |emotion| -%>
-            <li class="emotion"><%= link_to emotion.name, emotion %></li>
+          <% Emotion.hottest.first(6).each do |emotion| -%>
+            <li>
+            <span class="score"><%= emotion.score %>%</span>
+            <span class="emotion"><%= link_to emotion.name, emotion %></span>
+            </li>
           <% end -%>
         </div>
       </div>

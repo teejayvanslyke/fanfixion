@@ -1,4 +1,6 @@
 class Emotion < ActiveRecord::Base
+  
+  named_scope :hottest, { :order => 'pivot_count DESC' }
 
   has_many :pivots
   has_many :statuses, :through => :pivots, :order => 'created_at DESC'
@@ -7,6 +9,9 @@ class Emotion < ActiveRecord::Base
       find(:all, :limit => limit)
     end
   end
+
+
+  before_save :cache_pivot_count
 
   def to_param
     self.name
@@ -24,7 +29,7 @@ class Emotion < ActiveRecord::Base
   end
 
   def score
-    return 0
+    (0.0 + (pivot_count / Trend.count) * 100).round
   end
 
   # Debug method.
@@ -34,5 +39,9 @@ class Emotion < ActiveRecord::Base
 
   def opposite_name
     "Not #{self.name}"
+  end
+
+  def cache_pivot_count
+    self.pivot_count = self.pivots.count
   end
 end

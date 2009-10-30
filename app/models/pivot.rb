@@ -9,16 +9,16 @@ class Pivot < ActiveRecord::Base
   end
 
   def score_today
-    statuses.today.count / trend.statuses.today.count
+    0.0 + (statuses.today.count / trend.statuses.today.count) * 100
   end
 
   def score_for_hour
-    statuses.in_last_hour.count / trend.statuses.in_last_hour.count
+    0.0 + (statuses.in_last_hour.count / trend.statuses.in_last_hour.count) * 100
   end
 
   def score_for_all_time
-    return 0 if trend.statuses.count == 0
-    statuses.count / trend.statuses.count
+    return 0.0 if trend.statuses.count == 0
+    0.0 + (statuses.count / trend.statuses.count) * 100
   end
 
   def formatted_score
