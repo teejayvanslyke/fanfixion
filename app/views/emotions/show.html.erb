@@ -5,7 +5,7 @@
     var d = <%= @pivots.map {|p| p.hourly_scores.since(30.days.ago).map {|sa| [ sa.created_at.to_i * 1000, sa.score ]} }.to_json %>;
       $.plot($('#graph'), d, { 
       xaxis: { mode: 'time' } ,
-      colors: [ '#0074ae' ],
+      colors: <%= graph_colors.to_json %>,
       grid: { color: '#666666', tickColor: '#333333', backgroundColor: '#000000' }
       });
     });
@@ -16,10 +16,10 @@
   <div id="sidebar">
 <h3>People feel most <span class="emotion"><%=h @emotion.name %></span> because of</h3> 
 <ul class="scoreboard">
-  <% @pivots.each do |pivot| -%>
+  <% @pivots.each_with_index do |pivot, index| -%>
     <li>
       <span class="score"><%= pivot.formatted_score %></span>
-      <span class="trend"><%= link_to pivot.trend.name, pivot.trend %></span>
+      <span class="trend"><%= link_to pivot.trend.name, pivot.trend, :style => "color:#{color_for_index(index)}" %></span>
     </li>
   <% end -%>
 </ul>
