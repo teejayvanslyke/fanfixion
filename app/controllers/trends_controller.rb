@@ -40,11 +40,11 @@ class TrendsController < ApplicationController
   # POST /trends
   # POST /trends.xml
   def create
-    @trend = Trend.new(params[:trend])
+    @trend = Trend.find_by_name(params[:trend][:name]) || Trend.new(params[:trend])
 
     respond_to do |format|
       if @trend.save
-        flash[:notice] = 'Trend was successfully created.'
+        flash[:notice] = "No one's asked me about <em>#{@trend.name}</em> before, so give me awhile to <em>feel it out</em>."
         format.html { redirect_to(@trend) }
         format.xml  { render :xml => @trend, :status => :created, :location => @trend }
       else

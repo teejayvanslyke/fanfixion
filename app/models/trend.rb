@@ -40,12 +40,16 @@ class Trend < ActiveRecord::Base
           logger.info "  Could not classify"
         end
       end
+
     end
 
     def analyze_all
       self.all.each do |trend|
         analyze trend
       end
+
+      # Trigger caching
+      Pivot.all.each(&:save)
     end
 
 

@@ -1,7 +1,7 @@
 <div class="span-16">
 <h3>What do people feel because of <span class="trend"><%=h @trend.name %>?</h3> 
 <ul class="scoreboard">
-  <% @trend.pivots.first(10).each do |pivot| -%>
+  <% @trend.pivots.hottest.first(10).each do |pivot| -%>
     <li>
       <span class="score"><%= pivot.formatted_score %></span>
       <span class="emotion"><%= link_to pivot.emotion.name, pivot.emotion %></span>

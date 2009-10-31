@@ -4,5 +4,6 @@ StatusClassifier.start_service
 
 loop do
   Trend.analyze_all
+  sleep 5
 end
 

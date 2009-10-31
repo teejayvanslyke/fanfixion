@@ -10,9 +10,9 @@ class Emotion < ActiveRecord::Base
     end
   end
 
-
   before_save :cache_pivot_count
 
+  def touch!; self.save!; end
   def to_param
     self.name
   end
@@ -29,8 +29,8 @@ class Emotion < ActiveRecord::Base
   end
 
   def score
-    return 0.0 if Trend.count == 0
-    (0.0 + (pivot_count / Trend.count) * 100).round
+    return 0.0 if Pivot.count == 0
+    (0.0 + (pivot_count / Pivot.count) * 100).round
   end
 
   # Debug method.
