@@ -14,6 +14,7 @@ class TrendsController < ApplicationController
   # GET /trends/1.xml
   def show
     @trend = Trend.find(params[:id])
+    @pivots = @trend.pivots.hottest.first(5)
 
     respond_to do |format|
       format.html # show.html.erb

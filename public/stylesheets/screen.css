@@ -69,11 +69,12 @@ p {
 }
 
 ul.scoreboard {
-  font-size: 1.5em;
+  font-size: 1.0em;
   margin: 0;
   padding: 0;
   color: #666;
-  margin-bottom: 2.0em;
+  margin-top: 2.0em;
+  text-align: center;
 }
 
 ul.scoreboard .emotion,
@@ -82,7 +83,8 @@ ul.scoreboard .trend {
 }
 
 ul.scoreboard li {
-  padding:0;
+  display: inline;
+  padding:0 1.0em;
   margin: 1.0em 0;
 }
 

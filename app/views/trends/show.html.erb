@@ -1,13 +1,28 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag 'flot/jquery.flot' -%>
+  <% javascript_tag do -%>
+    $(function() {
+    var d = <%= @pivots.map {|p| p.hourly_scores.since(30.days.ago).map {|sa| [ sa.created_at.to_i * 1000, sa.score ]} }.to_json %>;
+      $.plot($('#graph'), d, { 
+      xaxis: { mode: 'time' } ,
+      colors: [ '#0074ae' ],
+      grid: { color: '#666666', tickColor: '#333333', backgroundColor: '#000000' }
+      });
+    });
+  <% end -%>
+<% end -%>
+
 <div class="span-16">
 <h3>What do people feel because of <span class="trend"><%=h @trend.name %>?</h3> 
 <ul class="scoreboard">
-  <% @trend.pivots.hottest.first(10).each do |pivot| -%>
+  <% @pivots.each do |pivot| -%>
     <li>
       <span class="score"><%= pivot.formatted_score %></span>
       <span class="emotion"><%= link_to pivot.emotion.name, pivot.emotion %></span>
     </li>
   <% end -%>
 </ul>
+  <div id="graph" style="width:600px;height:300px;"></div>
 </div>
 
 <div class="span-8 last">

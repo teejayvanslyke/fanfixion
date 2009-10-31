@@ -14,6 +14,7 @@ class EmotionsController < ApplicationController
   # GET /emotions/1.xml
   def show
     @emotion = Emotion.find_by_name(params[:id])
+    @pivots = @emotion.pivots.hottest.first(5)
 
     respond_to do |format|
       format.html # show.html.erb
