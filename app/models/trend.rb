@@ -46,7 +46,7 @@ class Trend < ActiveRecord::Base
     def analyze_all
       self.all.each do |trend|
         analyze trend
-        sleep 5
+        sleep 1
       end
 
       # Trigger caching
