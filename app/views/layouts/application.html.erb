@@ -26,13 +26,13 @@
           <h4><%= link_to 'About Emo', about_path %></h4>
         </div>
         <div class="span-4">
-          <h4 class="trend">Recent Trends</h4>
+          <h4>Recent Trends</h4>
           <% Trend.most_recent(6).each do |trend| -%>
             <li class="trend"><%= link_to trend.name, trend %></li>
           <% end -%>
         </div>
         <div class="span-4 last">
-          <h4 class="emotion">Raging Emotions</h4>
+          <h4>Raging Emotions</h4>
           <% Emotion.hottest.first(6).each do |emotion| -%>
             <li>
             <span class="score"><%= emotion.score %>%</span>

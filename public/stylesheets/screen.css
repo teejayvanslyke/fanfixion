@@ -20,7 +20,7 @@ li {
 }
 
 h1 {
-  color: #a839b2;
+  color: #0074ae;
   letter-spacing: -0.1em;
   font-size: 10.0em;
   padding: 0;
@@ -28,8 +28,8 @@ h1 {
   line-height: 0.75em;
 }
 
-h1 a { color: #a839b2; text-decoration: none; }
-h1 a:hover { color: #a839b2; }
+h1 a { color: #0074ae; text-decoration: none; }
+h1 a:hover { color: #0074ae; }
 
 h2 {
   font-size: 2.5em;
@@ -103,6 +103,7 @@ ul.scoreboard li {
 }
 
 h4 {
+  color: #ffffff;
   font-size: 1.5em;
   padding:0;
   margin: 0;
@@ -121,14 +122,14 @@ h4 a:hover {
 }
 .emotion a:hover, .trend a:hover { color: #ffffff; }
 .trend {
-  color: #00aa78;
+  color: #0074ae;
 }
 .emotion input {
   color: #fff;
   background-color: #0074ae;
 }
 .trend a {
-  color: #00aa78;
+  color: #0074ae;
 }
 
 label {
