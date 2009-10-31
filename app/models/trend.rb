@@ -1,5 +1,7 @@
 class Trend < ActiveRecord::Base
 
+  validates_presence_of :name
+
   named_scope :hottest, lambda {|count|
     { :order => 'created_at DESC', :limit => count }
   }

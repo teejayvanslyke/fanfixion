@@ -9,6 +9,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.gem 'daemons'
   config.gem 'twitter'
+  config.gem 'ruby-stemmer'
 
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
