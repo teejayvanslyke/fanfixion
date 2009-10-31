@@ -1,8 +1,26 @@
+<% content_for :head do -%>
+  <% javascript_tag do -%>
+    $(function() { 
+    var button = $("input[type='submit']");
+    var textField = $("input[type='text']");
+    button.attr('disabled', true); 
+    textField.click(function() { 
+    $(this).val(''); 
+    button.removeAttr('disabled'); 
+    $(this).unbind('click'); }) 
+    button.click(function() {
+      if (textField.val() == '') return false;
+      return true;
+    });
+    });
+  <% end -%>
+<% end -%>
+
 <p>See how people feel — <em>right now</em>.</p>
 
 <% form_for(@trend) do |f| %>
   <%= f.error_messages %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, :value => "Enter a noun. For example, 'Carl Sagan'." %>
   <%= f.submit 'Search' %>
 <% end %>
 
