@@ -4,8 +4,9 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment") unle
 loop do
   begin
     Trend.analyze_all
-    sleep 5
+    sleep 1
   rescue 
+    sleep 2
   end
 end
 
