@@ -45,7 +45,7 @@ class Pivot < ActiveRecord::Base
     if !trend || trend.statuses.in_last_hour.empty?
       self.score_for_hour = 0
     else
-      self.score_for_hour = (statuses.in_last_hour.count.to_f / trend.statuses.in_last_hour.count) * 100
+      self.score_for_hour = (statuses.in_last_hour.count.to_f / trend.statuses.in_last_hour.count.to_f) * 100
     end
   end
 
