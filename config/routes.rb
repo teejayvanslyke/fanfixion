@@ -6,5 +6,5 @@ ActionController::Routing::Routes.draw do |map|
   map.pivot     '/pivots', :controller => 'pivots', :action => 'show'
   map.trainer   '/trainer', :controller => 'trainer'
   map.about     '/about',   :controller => 'static', :action => 'about'
-  map.root      :controller => 'pivots', :action => 'new'
+  map.root      :controller => 'trends', :action => 'new'
 end

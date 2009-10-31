@@ -1,4 +1,4 @@
-<div class="span-12">
+<div class="span-16">
 <h3>What do people feel because of <span class="trend"><%=h @trend.name %>?</h3> 
 <ul class="scoreboard">
   <% @trend.pivots.first(10).each do |pivot| -%>
@@ -10,12 +10,9 @@
 </ul>
 </div>
 
-<div class="span-12 last">
-  <div id="sidebar">
-  <ul>
-    <li>
-      </li>
-    </ul>
-  </div>
+<div class="span-8 last">
+  <% @trend.statuses.recent.first(20).each do |status| -%>
+    <div class="status"><%= status.text %></div>
+  <% end -%>
 </div>
 

@@ -175,3 +175,23 @@ button {
   padding: 0 2.0em;
 }
 
+.trends.new input[type='text'] {
+  width: 400px;
+  background-color: #000;
+}
+
+.trends.new input[type='submit'] {
+  width: 100px;
+}
+
+.trends.new p {
+  text-align: center;
+}
+
+.trends.new form {
+  text-align: center;
+}
+
+.notice, .error {
+  padding: 1em;
+}
