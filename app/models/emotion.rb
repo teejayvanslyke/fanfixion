@@ -30,7 +30,7 @@ class Emotion < ActiveRecord::Base
 
   def score
     return 0.0 if Pivot.count == 0
-    (0.0 + (pivot_count / Pivot.count) * 100).round
+    ((pivot_count.to_f / Pivot.count) * 100).round
   end
 
   # Debug method.
