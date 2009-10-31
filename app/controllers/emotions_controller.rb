@@ -83,4 +83,13 @@ class EmotionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def statuses
+    @emotion = Emotion.find_by_name(params[:id])
+    @statuses = @emotion.statuses.recent.first(3)
+    
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
+  end
 end

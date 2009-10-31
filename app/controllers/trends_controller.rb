@@ -83,4 +83,13 @@ class TrendsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def statuses
+    @trend = Trend.find(params[:id])
+    @statuses = @trend.statuses.recent.first(3)
+
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
+  end
 end

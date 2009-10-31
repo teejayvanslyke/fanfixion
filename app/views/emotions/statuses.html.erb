@@ -1,0 +1,3 @@
+<% @statuses.each do |status| -%>
+  <div class="status trend-<%= status.pivot.trend_id %>"><%= status.text %></div>
+<% end -%>

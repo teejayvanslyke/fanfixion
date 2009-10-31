@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :trends
+  map.resources :trends, :member => { :statuses => :get }
   map.resources :statuses
-  map.resources :emotions
+  map.resources :emotions, :member => { :statuses => :get }
   map.resources :sentiments
   map.pivot     '/pivots', :controller => 'pivots', :action => 'show'
   map.trainer   '/trainer', :controller => 'trainer'

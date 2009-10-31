@@ -198,3 +198,10 @@ button {
 .notice, .error {
   padding: 1em;
 }
+
+.timeline {
+  padding:0;
+  margin-top: 4.0em;
+  overflow: hide;
+  height: 300px;
+}
