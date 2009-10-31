@@ -20,9 +20,10 @@ class Trend < ActiveRecord::Base
         logger.info "========== #{trend.name} =========="
         logger.info "  #{Status.clean_text(twitter_status.text)}"
 
-        emotion = Emotion.find_by_name(
-          StatusClassifier.classify(Status.clean_text(twitter_status.text))
-        )
+        classification = WordCountClassifier.classify(Status.clean_text(twitter_status.text)) 
+        next unless classification
+        
+        emotion = Emotion.find_by_name(classification)
 
         if emotion
           logger.info "  Classified as '#{emotion.name}'"
