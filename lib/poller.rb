@@ -3,9 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment") unle
 
 loop do
   begin
-    Trend.analyze_all
+    Trend.analyze(:hottest, 10)
     sleep 1
-  rescue 
+  rescue Exception => e
+    puts e.inspect
     sleep 2
   end
 end

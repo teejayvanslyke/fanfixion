@@ -1,5 +1,9 @@
 class Trend < ActiveRecord::Base
 
+  named_scope :hottest, lambda {|count|
+    { :order => 'created_at DESC', :limit => count }
+  }
+
   has_many :statuses
   has_many :pivots
   has_many :emotions, :through => :pivots, :uniq => true, :order => 'created_at DESC' do 
@@ -14,7 +18,7 @@ class Trend < ActiveRecord::Base
 
   class << self
 
-    def analyze(trend)
+    def analyze_trend(trend)
       Twitter::Search.new(trend.name).each do |twitter_status|
 
         logger.info "========== #{trend.name} =========="
@@ -43,9 +47,9 @@ class Trend < ActiveRecord::Base
 
     end
 
-    def analyze_all
-      self.all.each do |trend|
-        analyze trend
+    def analyze(what, *args)
+      self.send(what, *args).each do |trend|
+        analyze_trend trend
         sleep 1
       end
 
@@ -57,7 +61,7 @@ class Trend < ActiveRecord::Base
     def analyze_current
       Twitter::Trends.current.each do |twitter_trend|
         trend = find_or_create_by_name(twitter_trend.name)
-        analyze trend
+        analyze_trend trend
       end
     end
 
