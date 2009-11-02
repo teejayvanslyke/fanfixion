@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  emotion_id: 1
-  trend_id: 1
-
-two:
-  emotion_id: 1
-  trend_id: 1
